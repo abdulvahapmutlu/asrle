@@ -1,0 +1,21 @@
+# `configs/default.yaml`
+backend:
+  name: "hf-whisper"
+  params:
+    model_name: "openai/whisper-small"
+    device: "cpu"
+    language: null
+    task: "transcribe"
+    chunk_length_s: null
+
+analysis:
+  enable_profiling: true
+  compute_wer: true
+  compute_attribution: true
+  compute_drift: true
+  enable_suggestions: true
+
+reporting:
+  write_markdown: true
+  write_json: true
+  out_dir: "runs/latest"
