@@ -1,0 +1,10 @@
+-e .
+streamlit
+numpy
+soundfile
+jiwer
+tqdm
+faster-whisper
+torch
+transformers
+torchaudio
