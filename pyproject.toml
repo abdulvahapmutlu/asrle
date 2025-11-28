@@ -1,0 +1,58 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "asr-le"
+version = "0.2.0"
+description = "ASR-LE: Latency + Alignment + Error Attribution Engine for Speech Models"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "ASR-LE Contributors" }]
+keywords = ["asr", "speech", "latency", "wer", "profiling", "alignment", "observability", "streaming"]
+dependencies = [
+  "numpy>=1.23",
+  "pydantic>=2.6",
+  "pydantic-settings>=2.2",
+  "typer>=0.12",
+  "rich>=13.7",
+  "pyyaml>=6.0",
+  "soundfile>=0.12",
+  "tqdm>=4.66",
+]
+
+[project.optional-dependencies]
+metrics = ["jiwer>=3.0", "rapidfuzz>=3.6"]
+hf = ["transformers>=4.40", "torch>=2.1"]
+alignment = ["transformers>=4.40", "torch>=2.1", "torchaudio>=2.1"]
+faster_whisper = ["faster-whisper>=1.0", "ctranslate2>=4.0"]
+api = ["requests>=2.31"]
+dashboard = ["streamlit>=1.33", "pandas>=2.0", "matplotlib>=3.8"]
+profile = ["py-spy>=0.3.14", "torch>=2.1"]
+dev = ["pytest>=8.0", "ruff>=0.5", "mypy>=1.10"]
+
+[project.scripts]
+asrle = "asrle.cli.app:main"
+
+[project.entry-points."asrle.backends"]
+hf-whisper = "asrle.backends.hf_whisper:HuggingFaceWhisperBackend"
+faster-whisper = "asrle.backends.faster_whisper:FasterWhisperBackend"
+api = "asrle.backends.api_generic:GenericAPIBackend"
+dummy = "asrle.backends.dummy:DummyBackend"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/asrle"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+ignore_missing_imports = true
