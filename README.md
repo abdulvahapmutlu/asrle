@@ -17,7 +17,7 @@ ASR-LE is an advanced ASR evaluation toolkit that goes beyond WER by adding **ti
 
 - [Key Features](#key-features)
 - [Installation](#installation)
-  - [PyPI (Recommended)](#pypi)
+  - [PyPI (Recommended)](#pypi-recommended)
   - [Minimal](#minimal)
   - [With Whisper Backends](#with-whisper-backends)
   - [With Alignment (CTC forced alignment)](#with-alignment-ctc-forced-alignment)
@@ -408,3 +408,4 @@ Recommended dev flow:
 ## License
 
 This project is licensed under MIT License.
+
